@@ -2,6 +2,8 @@
 
 start: deps clean build server
 
+prod: deps clean build
+
 deps:
 	# dep ensure
 	go get ./cmd/...
