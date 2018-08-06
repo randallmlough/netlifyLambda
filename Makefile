@@ -12,8 +12,8 @@ clean:
 	rm -rf ./bin
 
 build:
-	env GOOS=linux go build -ldflags="-s -w" -o bin/apigw ./cmd/apigw
-	env GOOS=linux go build -ldflags="-s -w" -o bin/connect ./cmd/connect
-	env GOOS=linux go build -ldflags="-s -w" -o bin/form ./cmd/form
+	GOOS=linux GOARCH=amd64 go build -o bin/apigw ./cmd/apigw
+	GOOS=linux GOARCH=amd64 go build -o bin/connect ./cmd/connect
+	GOOS=linux GOARCH=amd64 go build -o bin/form ./cmd/form
 server: 
 	sam local start-api --static-dir public --host localhost --port 9000
