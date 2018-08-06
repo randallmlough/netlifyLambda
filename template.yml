@@ -5,7 +5,9 @@ Globals:
   Function:
     Runtime: go1.x
     Timeout: 180
-    
+    Environment:
+      Variables:
+        ENV_KEY: SOMELOCALKEY
 Resources:
   Connection:
     Type: AWS::Serverless::Function
@@ -29,6 +31,17 @@ Resources:
           Properties:
             Path: /.netlify/functions/form
             Method: post
+  Env:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: bin/
+      Handler: env
+      Events:
+        FormHandler:
+          Type: Api
+          Properties:
+            Path: /.netlify/functions/env
+            Method: any
   Apigw:
     Type: AWS::Serverless::Function
     Properties:
