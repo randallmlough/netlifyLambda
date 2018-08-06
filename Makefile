@@ -3,7 +3,8 @@
 start: deps clean build server
 
 deps:
-	dep ensure
+	# dep ensure
+	go get ./cmd/...
 
 clean: 
 	rm -rf ./bin
