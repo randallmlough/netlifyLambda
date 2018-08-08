@@ -49,8 +49,13 @@ Resources:
       CodeUri: bin/
       Handler: crypto
       Events:
-        FormHandler:
+        CoinHandler:
           Type: Api
           Properties:
             Path: /.netlify/functions/crypto
+            Method: any
+        NewHandler:
+          Type: Api
+          Properties:
+            Path: /.netlify/functions/crypto/new
             Method: any

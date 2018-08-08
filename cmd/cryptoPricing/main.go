@@ -122,8 +122,16 @@ func h(next http.HandlerFunc) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+func new(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("invoked")
+	mapD := map[string]int{"apple": 5, "lettuce": 7}
+	mapB, _ := json.Marshal(mapD)
+	fmt.Println(string(mapB))
 
+	w.Write(mapB)
+}
 func main() {
 	http.Handle("/", h(APIHandler))
+	http.Handle("/.netlify/functions/crypto/new", h(new))
 	log.Fatal(gateway.ListenAndServe(":9000", nil))
 }

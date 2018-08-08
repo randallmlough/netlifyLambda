@@ -116,8 +116,12 @@
                         <input type="text" name="crypto" class="form-control" id="crypto" placeholder="Enter a crypto coin - ex. BTC" required>
                     </div>
                     <div class="form-group mx-sm-3 mb-2">
-                        <label for="pair" class="sr-only">Currency Pair</label>
-                        <input type="text" name="pair" class="form-control" id="pair" placeholder="What currency? Ex. USD">
+                        <label for="inputState">Currency Pair</label>
+                        <select id="inputState" name="pair" class="form-control">
+                            <option selected>USD</option>
+                            <option>BTC</option>
+                            <option>LTC</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Get current value</button>
                 </form>
