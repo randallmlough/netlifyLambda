@@ -10,6 +10,10 @@ import (
 	"github.com/apex/gateway"
 )
 
+type Env struct {
+	Env string `json:"ENV_KEY"`
+}
+
 // EnvHandler is a http.HandlerFunc for the / path.
 func EnvHandler(w http.ResponseWriter, r *http.Request) {
 	// env enivroment variable is set in the template.tml global file and should output "SOMELOCALKEY" Locally and some "SOMESECRETKEY" deployed
@@ -18,13 +22,17 @@ func EnvHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("NOTHING SET")
 	} else {
 		fmt.Println(env)
-		json.NewEncoder(w).Encode(env)
+		resp := Env{
+			Env: env,
+		}
+		json.NewEncoder(w).Encode(resp)
 	}
 }
 
 // h wraps a http.HandlerFunc and adds common headers.
 func h(next http.HandlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset=utf8")
 		next.ServeHTTP(w, r)
 	})
 }

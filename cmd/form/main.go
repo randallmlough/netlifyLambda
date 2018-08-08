@@ -31,7 +31,6 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("key:", k)
 		fmt.Println("val:", strings.Join(v, ""))
 	}
-
 	resp := Form{
 		Name:        r.Form["name"],
 		Email:       r.Form["email"],

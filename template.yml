@@ -8,6 +8,7 @@ Globals:
     Environment:
       Variables:
         ENV_KEY: SOMELOCALKEY
+        
 Resources:
   Connection:
     Type: AWS::Serverless::Function
@@ -31,25 +32,25 @@ Resources:
           Properties:
             Path: /.netlify/functions/form
             Method: post
-  Env:
+  ENV:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: bin/
       Handler: env
       Events:
-        FormHandler:
+        EnvHandler:
           Type: Api
           Properties:
             Path: /.netlify/functions/env
             Method: any
-  Apigw:
+  API:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: bin/
-      Handler: apigw
+      Handler: crypto
       Events:
-        APIGWHandler:
+        FormHandler:
           Type: Api
           Properties:
-            Path: /.netlify/functions/apigw
-            Method: get
+            Path: /.netlify/functions/crypto
+            Method: any
